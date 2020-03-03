@@ -12,5 +12,5 @@ install.packages("devtools")
 2. Install the development version from Github:
 
 ```
-devtools::install_github("InteragencyEcologicalProgram/Status-and-Trends/smonitr")
+devtools::install_github("InteragencyEcologicalProgram/smonitr")
 ```
