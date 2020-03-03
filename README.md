@@ -1,16 +1,19 @@
 # smonitr
-smonitr is an R package used for the IEP Status &amp; Trends Seasonal Reports. It contains a group of functions used to standardize the formatting and elements of the plots used in the reports.
+smonitr is an R package used for the IEP Status &amp; Trends Seasonal Reports (also known as Seasonal Monitoring Reports). It contains groups of functions used to:
+
+* Standardize the formatting and elements of the plots used in the reports.
+* Download data from various online sources.
 
 ## Installation Instructions
 
-1. Install the R package `devtools`:
+1. Install the R package `remotes`:
 
 ```
-install.packages("devtools")
+install.packages("remotes")
 ```
 
 2. Install the development version from Github:
 
 ```
-devtools::install_github("InteragencyEcologicalProgram/smonitr")
+remotes::install_github("InteragencyEcologicalProgram/smonitr")
 ```
