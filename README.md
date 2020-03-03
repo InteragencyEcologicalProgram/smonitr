@@ -1,5 +1,5 @@
 # smonitr
-smonitr is an R package used for the IEP Status &amp; Trends Seasonal Reports. It contains groups of functions used to:
+smonitr is an R package used for the IEP Status &amp; Trends Seasonal Reports (also known as Seasonal Monitoring Reports). It contains groups of functions used to:
 
 * Standardize the formatting and elements of the plots used in the reports.
 * Download data from various online sources.
