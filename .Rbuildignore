@@ -1,3 +1,6 @@
 ^smonitr\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^smonitr\.rxproj$
+^smonitr\.sln$
+.vs

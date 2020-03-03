@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "smonitr", "smonitr.rxproj", "{BAF52F10-33CA-441C-8BAB-A36D7FE2FA8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAF52F10-33CA-441C-8BAB-A36D7FE2FA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF52F10-33CA-441C-8BAB-A36D7FE2FA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF52F10-33CA-441C-8BAB-A36D7FE2FA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF52F10-33CA-441C-8BAB-A36D7FE2FA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6482397A-3AD9-4980-B16C-951729B01A75}
+	EndGlobalSection
+EndGlobal
