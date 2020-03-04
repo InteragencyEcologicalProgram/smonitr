@@ -11,6 +11,21 @@ get_grandtab_data(
   verbose = TRUE
 )
 }
+\arguments{
+\item{season}{The season(s) to download data for.}
+
+\item{parse_fun}{A function to parse datasets. Default assumes that
+all files in fnames can be parsed using \code{readr::read_csv()}.}
+
+\item{...}{Additional arguments to pass to \code{parse_fun}.}
+
+\item{verbose}{If \code{TRUE}, display descriptive messages.}
+}
+\value{
+a named list of dataframes. The list also includes an
+attribute "Notes" of same length containing the notes section
+extracted from the report files.
+}
 \description{
 Download CDFW GrandTab data from SacPass.
 }

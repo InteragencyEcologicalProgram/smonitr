@@ -12,9 +12,9 @@ extract_files(path, fnames = ".*", ..., verbose = TRUE)
 \item{fnames}{A vector of file names in the archive to extract.
 Supports regex.}
 
-\item{...}{Other arguments passed to `utils::unzip()`.}
+\item{...}{Other arguments passed to \code{utils::unzip()}.}
 
-\item{verbose}{If `TRUE`, display descriptive message.}
+\item{verbose}{If \code{TRUE}, display descriptive message.}
 }
 \value{
 A vector of extracted file paths.

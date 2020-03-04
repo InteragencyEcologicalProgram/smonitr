@@ -20,7 +20,7 @@ The path of the downloaded file.
 }
 \description{
 Helper function to download files using curl::curl_download().
-This function can be supplied in place of argument `parse_fun`
+This function can be supplied in place of argument \code{parse_fun}
 to download files without attempting to read their contents.
 }
 \examples{

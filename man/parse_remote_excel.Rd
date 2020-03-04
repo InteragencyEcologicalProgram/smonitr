@@ -9,7 +9,7 @@ parse_remote_excel(path, ...)
 \arguments{
 \item{path}{The URL or FTP directory of the Excel file.}
 
-\item{...}{Other arguments to pass to [readxl::read_excel()]}
+\item{...}{Other arguments to pass to \code{\link[readxl:read_excel]{readxl::read_excel()}}}
 }
 \value{
 A dataframe.
@@ -19,8 +19,8 @@ Helper function for parsing an Excel file hosted on a website
 or FTP server.
 }
 \note{
-This function will be defunct once `readxl::read_excel()`
-  [supports reading from more general inputs](https://github.com/tidyverse/readxl/issues/278).
+This function will be defunct once \code{readxl::read_excel()}
+\href{https://github.com/tidyverse/readxl/issues/278}{supports reading from more general inputs}.
 }
 \examples{
 \dontrun{

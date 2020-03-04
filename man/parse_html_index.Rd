@@ -10,9 +10,9 @@ parse_html_index(url, node = "//a", attribute = "href")
 \item{url}{The url of the page to parse.}
 
 \item{node}{The HTML node to extract. Default is link anchor,
-i.e. `<a>`.}
+i.e. \verb{<a>}.}
 
-\item{attribute}{if not `NULL`, the attribute of the node to
+\item{attribute}{if not \code{NULL}, the attribute of the node to
 extract.}
 }
 \value{

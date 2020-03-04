@@ -19,19 +19,19 @@ get_redbluff_data(
 Default is 2004.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using `readr::read_csv()`.}
+all files in fnames can be parsed using \code{readr::read_csv()}.}
 
-\item{...}{Additional arguments to pass to `parse_fun`.}
+\item{...}{Additional arguments to pass to \code{parse_fun}.}
 
-\item{verbose}{If `TRUE`, display descriptive messages.}
+\item{verbose}{If \code{TRUE}, display descriptive messages.}
 }
 \value{
-a named list of dataframes. The list also includes an
-  attribute "Notes" of same length containing the notes section
-  extracted from the report files.
+a list of dataframes, one for each year. The list also
+includes an attribute "Notes" of same length and order containing
+the notes section extracted each report file.
 }
 \description{
-Download Redbluff data from [cbr.washington.edu](https://cbr.washington.edu).
+Download Redbluff data from \href{https://cbr.washington.edu}{cbr.washington.edu}.
 }
 \examples{
 \dontrun{

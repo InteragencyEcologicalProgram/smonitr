@@ -9,10 +9,10 @@ choose_files(files, selections = ".*", verbose = FALSE)
 \arguments{
 \item{files}{A vector of file names.}
 
-\item{selections}{A vector of file names to choose from `files`.
+\item{selections}{A vector of file names to choose from \code{files}.
 Supports regex.}
 
-\item{verbose}{If `TRUE`, display descriptive message.}
+\item{verbose}{If \code{TRUE}, display descriptive message.}
 }
 \value{
 A vector of file names.

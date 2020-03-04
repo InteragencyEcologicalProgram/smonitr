@@ -13,11 +13,11 @@ get_edi_data(pkg_id, fnames, parse_fun, ..., verbose = TRUE)
 Supports regex.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using `readr::read_csv()`.}
+all files in fnames can be parsed using \code{readr::read_csv()}.}
 
-\item{...}{Additional arguments to pass to `parse_fun`.}
+\item{...}{Additional arguments to pass to \code{parse_fun}.}
 
-\item{verbose}{If `TRUE`, display descriptive messages.}
+\item{verbose}{If \code{TRUE}, display descriptive messages.}
 }
 \value{
 A named list of dataframes.

@@ -7,13 +7,13 @@
 default_parse_fun(verbose)
 }
 \arguments{
-\item{verbose}{If `TRUE`, display descriptive message.}
+\item{verbose}{If \code{TRUE}, display descriptive message.}
 }
 \value{
-Reference to function `readr::read_csv()`
+Reference to function \code{readr::read_csv()}
 }
 \description{
 Return the default file parsing function, and throw error
-  if it is not available.
+if it is not available.
 }
 \keyword{internal}
