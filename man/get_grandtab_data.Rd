@@ -22,10 +22,17 @@ all files in fnames can be parsed using \code{readr::read_csv()}.}
 \item{verbose}{If \code{TRUE}, display descriptive messages.}
 }
 \value{
-a named list of dataframes. The list also includes an
-attribute "Notes" of same length containing the notes section
-extracted from the report files.
+a list of dataframes, one element for each specified
+\code{season}. The list also includes an attribute "Notes" of same
+length and order containing the notes section extracted each
+report file.
 }
 \description{
 Download CDFW GrandTab data from SacPass.
+}
+\examples{
+\dontrun{
+get_grandtab_data(c("Spring", "Fall"))
+}
+
 }

@@ -9,7 +9,8 @@
 #' @keywords internal
 default_parse_fun = function(verbose) {
   if (!requireNamespace("readr")) {
-    stop("no parse function provided, package \"readr\" is not available.")
+    stop("no parse function provided, package \"readr\" is not available.",
+      call. = FALSE)
   } else {
     if (verbose) {
       message("using \"readr::read_csv()\" to parse files.")
@@ -233,7 +234,7 @@ choose_files = function(files, selections = ".*", verbose = FALSE) {
   fname_regex = str_c(glue("({selections})"), collapse = "|")
   selected_files = files[str_detect(files, fname_regex)]
   if (length(selected_files) < length(selections)) {
-    stop("Not all specified selections were found.")
+    stop("Not all specified selections were found.", call. = FALSE)
   }
   if (verbose) {
     message("Selected files:\n",
@@ -344,9 +345,10 @@ get_odp_data = function(portal_url = "https://data.cnra.ca.gov", pkg_id, fnames,
 #' @param start_year The initial year to retrieve data for.
 #'   Default is 2004.
 #' @inheritParams get_edi_data
-#' @return a named list of dataframes. The list also includes an
-#'   attribute "Notes" of same length containing the notes section
-#'   extracted from the report files.
+#' @return a list of dataframes, each element corresponds to a year
+#'   the sequence `start_year:report_year`. The list also
+#'   includes an attribute "Notes" of same length and order containing
+#'   the notes section extracted each report file.
 #'
 #' @examples
 #' \dontrun{
@@ -379,7 +381,7 @@ get_redbluff_data = function(report_year, start_year = 2004, parse_fun, ..., ver
     ~ head(.x, .y - 1))
   # attach notes as attribute of list
   redbluff.notes = map2(redbluff.raw, notes.index,
-    ~ str_c(tail(.x[["Project"]],   -.y), collapse = "\n"))
+    ~ str_c(tail(.x[["Project"]], -.y), collapse = "\n"))
   attr(redbluff, "Notes") = redbluff.notes
   redbluff
 }
@@ -477,11 +479,29 @@ get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose =
 #'
 #' Download CDFW GrandTab data from SacPass.
 #'
+#' @param season The season(s) to download data for.
+#' @inheritParams get_edi_data
+#' @return a list of dataframes, one element for each specified
+#'   `season`. The list also includes an attribute "Notes" of same
+#'   length and order containing the notes section extracted each
+#'   report file.
+#'
+#' @examples
+#' \dontrun{
+#' get_grandtab_data(c("Spring", "Fall"))
+#' }
+#'
 #' @importFrom glue glue
-#' @importFrom stringr str_replace_all str_replace
+#' @importFrom stringr str_replace_all str_replace str_detect
+#' @importFrom purrr map map2 map_lgl
 #' @export
 get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall"), parse_fun, ..., verbose = TRUE) {
-  stop("not implemented")
+  if (missing(parse_fun)) {
+    parse_fun = default_parse_fun(verbose)
+  } else if (!is.function(parse_fun)) {
+    stop("argument \"parse_fun\" must be a function.")
+  }
+  # argument checking
   if (!all(season %in% c("Winter", "Spring", "Fall", "Late-Fall"))) {
     stop("Unrecognized value in argument \"seasons\"")
   }
@@ -489,6 +509,36 @@ get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall")
   spawn_type = "In-River"
   spawn_location = str_replace_all("Sacramento and San Joaquin River Systems",
     " ", "+")
-
-  grandtab_url = glue("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species={species}%3A{season}&type={spawn_type}&locType=location&location={spawn_location }%3AAll%3AAll")
+  # download data
+  if (verbose) {
+    message("Downloading data for ", paste(shQuote(season),
+      collapse = ", "), ".")
+  }
+  urls = glue("http://www.cbr.washington.edu/sacramento/data/php/rpt/grandtab_graph.php?outputFormat=csv&species={species}%3A{season}&type={spawn_type}&locType=location&location={spawn_location}%3AAll%3AAll")
+  grandtab.raw = map(urls, parse_fun, ...)
+  names(grandtab.raw) = season
+  # check for download error
+  err = map_lgl(grandtab.raw, ~!all(names(.x) %in% c("Year", "Annual")))
+  if (any(err)) {
+    stop("Error retrieving data for season: ",
+      paste(shQuote(season[err]), collapse = ", "), ".",
+      call. = FALSE)
+    grandtab.raw[season[err]] = NULL
+  }
+  notes.index = map(grandtab.raw,
+    ~ which(str_detect(.x[["Year"]], "Notes:")))
+  grandtab = map2(grandtab.raw, notes.index,
+    ~ head(.x, .y - 1))
+  # deal with "*" in Year column
+  grandtab = map(grandtab,
+    ~ mutate(.x,
+       flag = ifelse(str_detect(.data$Year, "\\*"), "*", ""),
+       Year = as.integer((str_replace(.data$Year, "\\*", ""))
+      ))
+    )
+  # attach notes as attribute of list
+  grandtab.notes = map2(grandtab.raw, notes.index,
+    ~ str_c(tail(.x[["Year"]],  -.y), collapse = "\n"))
+  attr(grandtab, "Notes") = grandtab.notes
+  grandtab
 }

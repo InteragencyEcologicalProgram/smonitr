@@ -26,7 +26,8 @@ all files in fnames can be parsed using \code{readr::read_csv()}.}
 \item{verbose}{If \code{TRUE}, display descriptive messages.}
 }
 \value{
-a list of dataframes, one for each year. The list also
+a list of dataframes, each element corresponds to a year
+the sequence \code{start_year:report_year}. The list also
 includes an attribute "Notes" of same length and order containing
 the notes section extracted each report file.
 }
