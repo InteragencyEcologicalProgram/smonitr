@@ -189,6 +189,10 @@ std_x_axis_label <- function(season = c("winter", "spring", "summer", "fall", "a
 #' @param df The dataframe that contains the data in the ggplot
 #' @param yr_var The name of the variable in \code{df} that contains the years
 #'     used in the ggplot. Should be a \strong{factor}.
+#' @param y_var The name of the variable in \code{df} that contains the y-axis
+#'     variable.
+#' @param min_yr The user-defined minimum year to be displayed on the y-axis.
+#'     Must be an integer.
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param symb_size Specifies the size of the symbol used to represent missing
@@ -200,26 +204,35 @@ std_x_axis_label <- function(season = c("winter", "spring", "summer", "fall", "a
 #' @import ggplot2
 #' @importFrom rlang enquo
 #' @importFrom rlang as_name
+#' @importFrom rlang .data
+#' @importFrom rlang :=
+#' @importFrom dplyr %>%
 #' @importFrom dplyr pull
 #' @importFrom dplyr anti_join
 #' @importFrom dplyr mutate
 #' @importFrom tibble tibble
 #' @export
-missing_data_symb <- function(df, yr_var, rpt_yr, symb_size) {
+missing_data_symb <- function(df, yr_var, y_var, min_yr, rpt_yr, symb_size) {
   # Convert yr_var to enquo for non-standard eval
   yr_var_enquo <- enquo(yr_var)
+  # Convert y_var to enquo for non-standard eval
+  y_var_enquo <- enquo(y_var)
 
   # Convert yr_var in df to numeric class
   df1 <- df %>%
     mutate(!!yr_var_enquo := as.numeric(as.character(!!yr_var_enquo)))
 
-  # Calculate minimum year in df
-  yr_min <- min(pull(df1, !!yr_var_enquo))
+  # Find y position of missing data symbol
+  df2 <- df%>%
+    dplyr::group_by(!!yr_var_enquo)%>%
+    dplyr::summarise(Y = sum(!!y_var_enquo, na.rm=TRUE))
+
+  y_pos <- (max(pull(df2, .data$Y), na.rm=TRUE) - min(pull(df2, .data$Y), na.rm=TRUE))*0.01 +  min(pull(df2, .data$Y), na.rm=TRUE)
 
   # Create a tibble with all possible years
   all_yrs <- tibble(
-    years = seq.int(yr_min, rpt_yr, 1),
-    result = 0
+    years = seq.int(min_yr, rpt_yr, 1),
+    result = y_pos
   )
 
   # Find missing years in df
@@ -229,15 +242,15 @@ missing_data_symb <- function(df, yr_var, rpt_yr, symb_size) {
       df1,
       by = c("years" = as_name(yr_var_enquo))
     ) %>%
-    mutate(years = factor(years))
+    mutate(years = factor(.data$years))
 
   # Add in symbols for missing years if necessary
   if (!is.null(missing_yrs)) {
     geom_point(
       data = missing_yrs,
       aes(
-        x = years,
-        y = result
+        x = .data$years,
+        y = .data$result
       ),
       inherit.aes = FALSE,
       na.rm = TRUE,
