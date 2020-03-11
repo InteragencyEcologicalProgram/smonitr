@@ -1,6 +1,6 @@
 Package: smonitr
 Title: IEP Seasonal Monitoring Report Tools
-Version: 1.2.0.9000
+Version: 2.0.0.9000
 Date: 2020-02-14
 Authors@R: c(
     person(given = "Dave",
@@ -16,8 +16,6 @@ Depends: R (>= 3.6)
 Imports: 
     utils,
     rlang (>= 0.4),
-    tibble (>= 2.1),
-    dplyr (>= 0.8),
     ggplot2 (>= 3.2),
     glue (>= 1.3),
     purrr (>= 0.3),
