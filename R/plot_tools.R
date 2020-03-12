@@ -7,6 +7,7 @@
 #' @import ggplot2
 #' @export
 theme_smr <- function() {
+  list(scale_y_continuous(expand=expansion(mult=c(0,0.05))),
   theme_bw() +
   theme(
     # Define text size of tick labels
@@ -38,6 +39,7 @@ theme_smr <- function() {
     legend.title = element_text(size = 10),
     # Define legend position
     legend.position = "top"
+  )
   )
 }
 
