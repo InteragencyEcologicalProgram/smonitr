@@ -1,45 +1,49 @@
 #' @title Custom formatting for ggplots in the IEP Seasonal Monitoring Reports
 #' @description This custom theme builds off of the \code{theme_bw()}
-#'     ggplot theme and removes plot gridlines and modifies the text size of
-#'     various ggplot elements.
+#'     ggplot theme and removes plot gridlines, modifies the text size of
+#'     various ggplot elements, places legends above the plot, and removes the
+#'     negative white space from the y-axis.
+#'
+#' @param ... Other arguments to pass to \code{ggplot2::scale_y_continuous()}
 #'
 #' @return A ggplot layer that applies a custom theme as described above.
 #' @import ggplot2
 #' @export
-theme_smr <- function() {
-  list(scale_y_continuous(expand=expansion(mult=c(0,0.05))),
-  theme_bw() +
-  theme(
-    # Define text size of tick labels
-    axis.text = element_text(size = 9),
-    # Define text size and face of axes labels
-    axis.title = element_text(
-      size = 10,
-      face = "plain"
-    ),
-    # Remove panel grid lines
-    panel.grid = element_blank(),
-    # Adjust the margin dimensions so nothing is cut off
-    plot.margin = unit(
-      c(0.25, 0.6, 0.1, 0.4), #top, right, bottom, left
-      units = "cm"
-    ),
-    # Define text size and justification of plot title
-    plot.title = element_text(
-      size = 20,
-      vjust = 1,
-      hjust = 0.5
-    ),
-    # Define text size and face of legend item labels
-    legend.text = element_text(
-      size = 9,
-      face = "plain"
-    ),
-    # Define text size of legend title
-    legend.title = element_text(size = 10),
-    # Define legend position
-    legend.position = "top"
-  )
+theme_smr <- function(...) {
+  list(
+    scale_y_continuous(expand = expansion(mult = c(0, 0.05)), ...),
+    theme_bw(),
+    theme(
+      # Define text size of tick labels
+      axis.text = element_text(size = 9),
+      # Define text size and face of axes labels
+      axis.title = element_text(
+        size = 10,
+        face = "plain"
+      ),
+      # Remove panel grid lines
+      panel.grid = element_blank(),
+      # Adjust the margin dimensions so nothing is cut off
+      plot.margin = unit(
+        c(0.25, 0.6, 0.1, 0.4), #top, right, bottom, left
+        units = "cm"
+      ),
+      # Define text size and justification of plot title
+      plot.title = element_text(
+        size = 20,
+        vjust = 1,
+        hjust = 0.5
+      ),
+      # Define text size and face of legend item labels
+      legend.text = element_text(
+        size = 9,
+        face = "plain"
+      ),
+      # Define text size of legend title
+      legend.title = element_text(size = 10),
+      # Define legend position
+      legend.position = "top"
+    )
   )
 }
 
