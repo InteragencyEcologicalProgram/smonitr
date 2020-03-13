@@ -1,5 +1,6 @@
-#' @export ggplot2::aes
-NULL
+#' @importFrom ggplot2 aes
+#' @export
+ggplot2::aes
 
 #' Custom formatting for IEP Seasonal Monitoring Report figures
 #'
