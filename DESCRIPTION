@@ -12,7 +12,8 @@ Authors@R: c(
            family = "Koohafkan", 
            role = "ctb"))
 Description: A collection of R functions for the IEP Seasonal Monitoring Reports.
-Depends: R (>= 3.6)
+Depends: 
+    R (>= 3.6),
 Imports: 
     utils,
     rlang (>= 0.4),

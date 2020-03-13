@@ -1,3 +1,6 @@
+#' @export ggplot2::aes
+NULL
+
 #' Custom formatting for IEP Seasonal Monitoring Report figures
 #'
 #' This custom theme builds off of the `[ggplot2::theme_bw()]`
@@ -71,12 +74,12 @@ smr_theme = function() {
 #' @importFrom utils head tail
 #' @export
 smr_x_axis = function(report_year, type = c("all", "recent"),
-  season = c("winter", "spring", "summer", "fall", "annual"),
+  season = c("annual", "winter", "spring", "summer", "fall"),
   interval, start_year) {
   # argument checking
   type = match.arg(type, c("all", "recent"))
-  season = match.arg(season, c("winter", "spring", "summer", "fall",
-    "annual"))
+  season = match.arg(season, c("annual", "winter", "spring", 
+    "summer", "fall"))
   if (missing(start_year)) {
     start_year = switch(type,
       "all" = 1966L,
@@ -146,6 +149,6 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
 #' @import ggplot2
 #' @importFrom utils head tail
 #' @export
-smr_y_axis = function(..., expand = expansion(mult = c(0, 0.05))) {
+smr_y_axis = function(..., expand = expand_scale(mult = c(0, 0.05))) {
   scale_y_continuous(..., expand = expand)
 }

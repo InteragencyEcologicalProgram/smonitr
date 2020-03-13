@@ -9,7 +9,7 @@ standard_column_plot(
   mapping,
   report_year,
   season = c("annual", "winter", "spring", "summer", "fall"),
-  type = c("recent", "all"),
+  type = c("all", "recent"),
   ...
 )
 }
@@ -39,4 +39,9 @@ corresponds to the Pelagic Organism Decline.}
 \description{
 A template function for producing column plots for the IEP
 Seasonal Monitoring Report.
+}
+\examples{
+test = data.frame(year = 2004:2018, catch = c(sample(100:500, 14), NA))
+standard_column_plot(test, aes(x = year, y = catch), 2018)
+
 }
