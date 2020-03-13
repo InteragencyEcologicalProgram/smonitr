@@ -28,11 +28,11 @@ Default is 10.}
 }
 \value{
 A ggplot layer that defines the x-axis limits and breaks based upon
-    user-defined arguments.
+user-defined arguments.
 }
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of
-    all years of data. For plots with a discrete x-variable including
-    \code{geom_col} geoms, the x-variable used in the ggplot needs to
-    be a \strong{factor}.
+all years of data. For plots with a discrete x-variable including
+\code{geom_col} geoms, the x-variable used in the ggplot needs to
+be a \strong{factor}.
 }

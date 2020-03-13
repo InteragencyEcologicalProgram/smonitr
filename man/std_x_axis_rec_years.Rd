@@ -18,12 +18,12 @@ and \code{geom_area} geoms are "cont" or continuous scale type. Default is
 }
 \value{
 A ggplot layer that defines the x-axis limits and breaks for plots of
-    recent data. The default limits are \code{rpt_yr - 14} to \code{rpt_yr},
-    and the default break interval is 5 years.
+recent data. The default limits are \code{rpt_yr - 14} to \code{rpt_yr},
+and the default break interval is 5 years.
 }
 \description{
 Standardizes the x-axis limits and breaks for a ggplot of recent
-    years of data. "Recent years" is defined as the prior 15 years from the
-    \code{rpt_yr} argument. For plots with \code{geom_col} geoms, the
-    x-variable used in the ggplot needs to be a \strong{factor}.
+years of data. "Recent years" is defined as the prior 15 years from the
+\code{rpt_yr} argument. For plots with \code{geom_col} geoms, the
+x-variable used in the ggplot needs to be a \strong{factor}.
 }

@@ -12,10 +12,10 @@ one of the following: \code{"winter", "spring", "summer", "fall", "annual"}.}
 }
 \value{
 A standardized x-axis label to a ggplot object. Each season option
-    provides a label in the format "Year (Month - Month)". The argument
-    \code{season = "annual"} provides the label "Year" without specified months.
+provides a label in the format "Year (Month - Month)". The argument
+\code{season = "annual"} provides the label "Year" without specified months.
 }
 \description{
 Adds a standardized x-axis label to a ggplot based on the season
-    of the report.
+of the report.
 }
