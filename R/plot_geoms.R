@@ -36,7 +36,7 @@ StatMissing <- ggproto("StatMissing", Stat,
 #' @inheritParams ggplot2::geom_point
 #' @param nudge_y Vertical adjustment to nudge markers by.
 #' @param ...,shape,size,fill,color Other arguments passed on to
-#'   [ggplot2::layer()].
+#'   [`ggplot2::layer()`].
 #' @return a ggplot2 stat.
 #'
 #' @import ggplot2
@@ -74,7 +74,7 @@ StatLTavg <- ggproto("StatLTavg", Stat,
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_hline
 #' @param ...,color,linetype,size Other arguments passed on to
-#'   [ggplot2::layer()].
+#'   [`ggplot2::layer()`].
 #' @return a ggplot2 stat.
 #'
 #' @import ggplot2

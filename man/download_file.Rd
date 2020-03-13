@@ -19,7 +19,7 @@ By default, the session temporary directory is used.}
 The path of the downloaded file.
 }
 \description{
-Helper function to download files using curl::curl_download().
+Helper function to download files using \code{\link[curl:curl_download]{curl::curl_download()}}.
 This function can be supplied in place of argument \code{parse_fun}
 to download files without attempting to read their contents.
 }

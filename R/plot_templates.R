@@ -5,7 +5,7 @@
 #'
 #' @inheritParams ggplot2::ggplot
 #' @inheritParams smr_x_axis
-#' @param ... other arguments to pass to `[geom_col()]`
+#' @param ... other arguments to pass to [`geom_col()`]
 #'
 #' @examples
 #' test = data.frame(year = 2004:2018, catch = c(sample(100:500, 14), NA))

@@ -4,27 +4,17 @@
 \alias{smr_y_axis}
 \title{Custom y-axis for IEP Seasonal Monitoring Report figures}
 \usage{
-smr_y_axis(..., expand = expand_scale(mult = c(0, 0.05)))
+smr_y_axis(expand = expand_scale(mult = c(0, 0.05)), ...)
 }
 \arguments{
-\item{report_year}{The user-defined report year for the Seasonal
-Monitoring Report. Must be an integer.}
+\item{expand}{Vector of range expansion constants used to add some
+padding around the data, to ensure that they are placed some distance
+away from the axes. Use the convenience function \code{\link[ggplot2:expand_scale]{expand_scale()}}
+to generate the values for the \code{expand} argument. The defaults are to
+expand the scale by 5\% on each side for continuous variables, and by
+0.6 units on each side for discrete variables.}
 
-\item{type}{The scale type to use. \code{type = "all"} defines the
-minimum x-axis limit as 1966, which corresponds to the earliest
-survey shown in the fall season report (Fall Midwater Trawl).
-\code{type = "recent"} defines the minimum x-axis limit as 2004, which
-corresponds to the Pelagic Organism Decline.}
-
-\item{season}{The season for the Seasonal Monitoring Report.
-Must be one of the following: \code{"winter"}, \code{"spring"},
-\code{"summer"}, \code{"fall"}, or \code{"annual"}.}
-
-\item{interval}{(optional) override the x-axis break interval.
-By default, \code{type = "all"} results in a break interval of 10 years
-while \code{type = "recent"} results in a break interval of 5 years.}
-
-\item{start_year}{(optional) override the x-axis lower limit.}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}}}
 }
 \value{
 A ggplot continuous x-axis scale.

@@ -34,7 +34,7 @@ survey shown in the fall season report (Fall Midwater Trawl).
 \code{type = "recent"} defines the minimum x-axis limit as 2004, which
 corresponds to the Pelagic Organism Decline.}
 
-\item{...}{other arguments to pass to \verb{[geom_col()]}}
+\item{...}{other arguments to pass to \code{\link[=geom_col]{geom_col()}}}
 }
 \description{
 A template function for producing column plots for the IEP

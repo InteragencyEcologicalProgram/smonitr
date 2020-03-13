@@ -4,7 +4,7 @@
 #'   if it is not available.
 #'
 #' @param verbose If `TRUE`, display descriptive message.
-#' @return Reference to function `readr::read_csv()`
+#' @return Reference to function [`readr::read_csv()`]
 #'
 #' @keywords internal
 default_parse_fun = function(verbose) {
@@ -31,7 +31,7 @@ default_parse_fun = function(verbose) {
 #' @param path The path to the zipfile.
 #' @param fnames A vector of file names in the archive to extract.
 #'   Supports regex.
-#' @param ... Other arguments passed to `utils::unzip()`.
+#' @param ... Other arguments passed to [`utils::unzip()`].
 #' @param verbose If `TRUE`, display descriptive message.
 #' @return A vector of extracted file paths.
 #'
@@ -55,7 +55,7 @@ extract_files = function(path, fnames = ".*", ..., verbose = TRUE) {
 
 #' Download File
 #'
-#' Helper function to download files using curl::curl_download().
+#' Helper function to download files using [`curl::curl_download()`].
 #' This function can be supplied in place of argument `parse_fun`
 #' to download files without attempting to read their contents.
 #'
@@ -94,11 +94,11 @@ download_file = function(url, fname = basename(url), download_dir = tempdir()) {
 #' Helper function for parsing an Excel file hosted on a website
 #' or FTP server.
 #'
-#' @note This function will be defunct once `readxl::read_excel()`
+#' @note This function will be defunct once [`readxl::read_excel()`]
 #'   [supports reading from more general inputs](https://github.com/tidyverse/readxl/issues/278).
 #'
 #' @param path The URL or FTP directory of the Excel file.
-#' @param ... Other arguments to pass to [readxl::read_excel()]
+#' @param ... Other arguments to pass to [`readxl::read_excel()`]
 #' @return A dataframe.
 #'
 #' @examples
@@ -252,7 +252,7 @@ choose_files = function(files, selections = ".*", verbose = FALSE) {
 #' @param fnames A vector of file names in the package to download.
 #'   Supports regex.
 #' @param parse_fun A function to parse datasets. Default assumes that
-#'   all files in fnames can be parsed using `readr::read_csv()`.
+#'   all files in fnames can be parsed using [`readr::read_csv()`].
 #' @param ... Additional arguments to pass to `parse_fun`.
 #' @param verbose If `TRUE`, display descriptive messages.
 #' @return A named list of dataframes.
@@ -300,10 +300,11 @@ get_edi_data = function(pkg_id, fnames, parse_fun, ..., verbose = TRUE) {
 
 #' Download Open Data Portal Package Files
 #'
-#' Download files from an Open Data Portal, assuming it uses the CKAN
-#'   API.
+#' Download files from an Open Data Portal, assuming it uses the
+#' CKAN API.
 #'
-#' @param portal_url The base URL of the portal, e.g. `"data.cnra.ca.gov"`.
+#' @param portal_url The base URL of the portal, e.g.
+#'   `"data.cnra.ca.gov"`.
 #' @inheritParams get_edi_data
 #' @return a named list of dataframes.
 #'
@@ -339,16 +340,17 @@ get_odp_data = function(portal_url = "https://data.cnra.ca.gov", pkg_id, fnames,
 
 #' Download Redbluff Data
 #'
-#' Download Redbluff data from [cbr.washington.edu](https://cbr.washington.edu).
+#' Download Redbluff data from
+#' [cbr.washington.edu](https://cbr.washington.edu).
 #'
 #' @param report_year The report year.
 #' @param start_year The initial year to retrieve data for.
-#'   Default is 2004.
+#'   Default is `2004`.
 #' @inheritParams get_edi_data
 #' @return a list of dataframes, each element corresponds to a year
 #'   the sequence `start_year:report_year`. The list also
-#'   includes an attribute "Notes" of same length and order containing
-#'   the notes section extracted each report file.
+#'   includes an attribute `"Notes"` of same length and order
+#'   containing the notes section extracted each report file.
 #'
 #' @examples
 #' \dontrun{
@@ -395,9 +397,7 @@ get_redbluff_data = function(report_year, start_year = 2004, parse_fun, ..., ver
 #' @param path_suffix Path suffix(es), specifying subfolders of the
 #'   asset to search
 #' @inheritParams get_edi_data
-#' @return a named list of dataframes. The list also includes an
-#'   attribute "Notes" of same length containing the notes section
-#'   extracted from the report files.
+#' @return a named list of dataframes.
 #'
 #' @examples
 #' \dontrun{
@@ -438,9 +438,7 @@ get_baydeltalive_data = function(asset_id, path_suffix, fnames, parse_fun, ..., 
 #' @param ftp_address The FTP server address.
 #' @param dir_path FTP directory to search.
 #' @inheritParams get_edi_data
-#' @return a named list of dataframes. The list also includes an
-#'   attribute "Notes" of same length containing the notes section
-#'   extracted from the report files.
+#' @return a named list of dataframes.
 #'
 #' @examples
 #' \dontrun{
@@ -482,7 +480,7 @@ get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose =
 #' @param season The season(s) to download data for.
 #' @inheritParams get_edi_data
 #' @return a list of dataframes, one element for each specified
-#'   `season`. The list also includes an attribute "Notes" of same
+#'   `season`. The list also includes an attribute `"Notes"` of same
 #'   length and order containing the notes section extracted each
 #'   report file.
 #'

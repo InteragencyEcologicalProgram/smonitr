@@ -14,7 +14,8 @@ get_odp_data(
 )
 }
 \arguments{
-\item{portal_url}{The base URL of the portal, e.g. \code{"data.cnra.ca.gov"}.}
+\item{portal_url}{The base URL of the portal, e.g.
+\code{"data.cnra.ca.gov"}.}
 
 \item{pkg_id}{The package identifier.}
 
@@ -22,7 +23,7 @@ get_odp_data(
 Supports regex.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using \code{readr::read_csv()}.}
+all files in fnames can be parsed using \code{\link[readr:read_csv]{readr::read_csv()}}.}
 
 \item{...}{Additional arguments to pass to \code{parse_fun}.}
 
@@ -32,8 +33,8 @@ all files in fnames can be parsed using \code{readr::read_csv()}.}
 a named list of dataframes.
 }
 \description{
-Download files from an Open Data Portal, assuming it uses the CKAN
-API.
+Download files from an Open Data Portal, assuming it uses the
+CKAN API.
 }
 \examples{
 \dontrun{
