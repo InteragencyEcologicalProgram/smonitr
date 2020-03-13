@@ -32,8 +32,11 @@ standard_column_plot = function(data, mapping, report_year,
   # convert year to integer
   data[as_name(mapping$x)] = as.integer(data[[as_name(mapping$x)]])
   # construct the plot
-  ggplot(data, mapping) + geom_col(...) +
+  ggplot(data, mapping) +
+    smr_theme() +
+    xaxis +
+    smr_y_axis() +
+    geom_col(...) +
     stat_missing(nudge_y = 0) +
-    stat_lt_avg() +
-    smr_theme() + xaxis
+    stat_lt_avg()
 }

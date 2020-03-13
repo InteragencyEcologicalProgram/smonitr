@@ -119,3 +119,33 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
   scale_x_continuous(title, breaks = all_breaks,
     limits = c(start_year - 0.5, report_year + 0.5))
 }
+
+
+#' Custom y-axis for IEP Seasonal Monitoring Report figures
+#'
+#' Standardizes the y-axis a ggplot. This is really just a wrapper
+#' around[`ggplot2::scale_y_continuous()`] with a default setting
+#' for the `expand` argument to reduce whitespace.
+#'
+#' @param report_year The user-defined report year for the Seasonal
+#'   Monitoring Report. Must be an integer.
+#' @param type The scale type to use. `type = "all"` defines the
+#'   minimum x-axis limit as 1966, which corresponds to the earliest
+#'   survey shown in the fall season report (Fall Midwater Trawl).
+#'   `type = "recent"` defines the minimum x-axis limit as 2004, which
+#'   corresponds to the Pelagic Organism Decline.
+#' @param season The season for the Seasonal Monitoring Report.
+#'   Must be one of the following: `"winter"`, `"spring"`,
+#'   `"summer"`, `"fall"`, or `"annual"`.
+#' @param interval (optional) override the x-axis break interval.
+#'   By default, `type = "all"` results in a break interval of 10 years
+#'   while `type = "recent"` results in a break interval of 5 years.
+#' @param start_year (optional) override the x-axis lower limit.
+#' @return A ggplot continuous x-axis scale.
+#'
+#' @import ggplot2
+#' @importFrom utils head tail
+#' @export
+smr_y_axis = function(..., expand = expansion(mult = c(0, 0.05))) {
+  scale_y_continuous(..., expand = expand)
+}
