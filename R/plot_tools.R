@@ -134,6 +134,6 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
 #' @import ggplot2
 #' @importFrom utils head tail
 #' @export
-smr_y_axis = function(expand = expand_scale(mult = c(0, 0.05)), ...) {
+smr_y_axis = function(expand = expansion(mult = c(0, 0.05)), ...) {
   scale_y_continuous(..., expand = expand)
 }
