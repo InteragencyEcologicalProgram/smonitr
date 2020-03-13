@@ -4,19 +4,13 @@
 \alias{missing_data_symb}
 \title{Add symbols to a ggplot representing missing data}
 \usage{
-missing_data_symb(df, yr_var, y_var, min_yr, rpt_yr, symb_size)
+missing_data_symb(df, yr_var, rpt_yr, symb_size)
 }
 \arguments{
 \item{df}{The dataframe that contains the data in the ggplot}
 
 \item{yr_var}{The name of the variable in \code{df} that contains the years
 used in the ggplot. Should be a \strong{factor}.}
-
-\item{y_var}{The name of the variable in \code{df} that contains the y-axis
-variable.}
-
-\item{min_yr}{The user-defined minimum year to be displayed on the y-axis.
-Must be an integer.}
 
 \item{rpt_yr}{The user-defined report year for the Seasonal Monitoring Report.
 Must be an integer.}

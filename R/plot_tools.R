@@ -1,49 +1,43 @@
 #' @title Custom formatting for ggplots in the IEP Seasonal Monitoring Reports
 #' @description This custom theme builds off of the \code{theme_bw()}
-#'     ggplot theme and removes plot gridlines, modifies the text size of
-#'     various ggplot elements, places legends above the plot, and removes the
-#'     negative white space from the y-axis.
-#'
-#' @param ... Other arguments to pass to \code{ggplot2::scale_y_continuous()}
+#'     ggplot theme and removes plot gridlines and modifies the text size of
+#'     various ggplot elements.
 #'
 #' @return A ggplot layer that applies a custom theme as described above.
 #' @import ggplot2
 #' @export
-theme_smr <- function(...) {
-  list(
-    scale_y_continuous(expand = expansion(mult = c(0, 0.05)), ...),
-    theme_bw(),
-    theme(
-      # Define text size of tick labels
-      axis.text = element_text(size = 9),
-      # Define text size and face of axes labels
-      axis.title = element_text(
-        size = 10,
-        face = "plain"
-      ),
-      # Remove panel grid lines
-      panel.grid = element_blank(),
-      # Adjust the margin dimensions so nothing is cut off
-      plot.margin = unit(
-        c(0.25, 0.6, 0.1, 0.4), #top, right, bottom, left
-        units = "cm"
-      ),
-      # Define text size and justification of plot title
-      plot.title = element_text(
-        size = 20,
-        vjust = 1,
-        hjust = 0.5
-      ),
-      # Define text size and face of legend item labels
-      legend.text = element_text(
-        size = 9,
-        face = "plain"
-      ),
-      # Define text size of legend title
-      legend.title = element_text(size = 10),
-      # Define legend position
-      legend.position = "top"
-    )
+theme_smr <- function() {
+  theme_bw() +
+  theme(
+    # Define text size of tick labels
+    axis.text = element_text(size = 9),
+    # Define text size and face of axes labels
+    axis.title = element_text(
+      size = 10,
+      face = "plain"
+    ),
+    # Remove panel grid lines
+    panel.grid = element_blank(),
+    # Adjust the margin dimensions so nothing is cut off
+    plot.margin = unit(
+      c(0.25, 0.6, 0.1, 0.4), #top, right, bottom, left
+      units = "cm"
+    ),
+    # Define text size and justification of plot title
+    plot.title = element_text(
+      size = 20,
+      vjust = 1,
+      hjust = 0.5
+    ),
+    # Define text size and face of legend item labels
+    legend.text = element_text(
+      size = 9,
+      face = "plain"
+    ),
+    # Define text size of legend title
+    legend.title = element_text(size = 10),
+    # Define legend position
+    legend.position = "top"
   )
 }
 
@@ -195,10 +189,6 @@ std_x_axis_label <- function(season = c("winter", "spring", "summer", "fall", "a
 #' @param df The dataframe that contains the data in the ggplot
 #' @param yr_var The name of the variable in \code{df} that contains the years
 #'     used in the ggplot. Should be a \strong{factor}.
-#' @param y_var The name of the variable in \code{df} that contains the y-axis
-#'     variable.
-#' @param min_yr The user-defined minimum year to be displayed on the y-axis.
-#'     Must be an integer.
 #' @param rpt_yr The user-defined report year for the Seasonal Monitoring Report.
 #'     Must be an integer.
 #' @param symb_size Specifies the size of the symbol used to represent missing
@@ -208,37 +198,31 @@ std_x_axis_label <- function(season = c("winter", "spring", "summer", "fall", "a
 #' @return A ggplot object with tan triangle symbols that represent years with
 #'     missing data.
 #' @import ggplot2
+#' @importFrom dplyr %>%
 #' @importFrom rlang enquo
 #' @importFrom rlang as_name
 #' @importFrom rlang .data
 #' @importFrom rlang :=
-#' @importFrom dplyr %>%
 #' @importFrom dplyr pull
 #' @importFrom dplyr anti_join
 #' @importFrom dplyr mutate
 #' @importFrom tibble tibble
 #' @export
-missing_data_symb <- function(df, yr_var, y_var, min_yr, rpt_yr, symb_size) {
+missing_data_symb <- function(df, yr_var, rpt_yr, symb_size) {
   # Convert yr_var to enquo for non-standard eval
   yr_var_enquo <- enquo(yr_var)
-  # Convert y_var to enquo for non-standard eval
-  y_var_enquo <- enquo(y_var)
 
   # Convert yr_var in df to numeric class
   df1 <- df %>%
     mutate(!!yr_var_enquo := as.numeric(as.character(!!yr_var_enquo)))
 
-  # Find y position of missing data symbol
-  df2 <- df%>%
-    dplyr::group_by(!!yr_var_enquo)%>%
-    dplyr::summarise(Y = sum(!!y_var_enquo, na.rm=TRUE))
-
-  y_pos <- (max(pull(df2, .data$Y), na.rm=TRUE) - min(pull(df2, .data$Y), na.rm=TRUE))*0.01 +  min(pull(df2, .data$Y), na.rm=TRUE)
+  # Calculate minimum year in df
+  yr_min <- min(pull(df1, !!yr_var_enquo))
 
   # Create a tibble with all possible years
   all_yrs <- tibble(
-    years = seq.int(min_yr, rpt_yr, 1),
-    result = y_pos
+    years = seq.int(yr_min, rpt_yr, 1),
+    result = 0
   )
 
   # Find missing years in df
@@ -248,15 +232,15 @@ missing_data_symb <- function(df, yr_var, y_var, min_yr, rpt_yr, symb_size) {
       df1,
       by = c("years" = as_name(yr_var_enquo))
     ) %>%
-    mutate(years = factor(.data$years))
+    mutate(years = factor(years))
 
   # Add in symbols for missing years if necessary
   if (!is.null(missing_yrs)) {
     geom_point(
       data = missing_yrs,
       aes(
-        x = .data$years,
-        y = .data$result
+        x = years,
+        y = result
       ),
       inherit.aes = FALSE,
       na.rm = TRUE,

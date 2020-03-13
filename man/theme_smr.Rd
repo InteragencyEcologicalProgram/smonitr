@@ -4,17 +4,13 @@
 \alias{theme_smr}
 \title{Custom formatting for ggplots in the IEP Seasonal Monitoring Reports}
 \usage{
-theme_smr(...)
-}
-\arguments{
-\item{...}{Other arguments to pass to \code{ggplot2::scale_y_continuous()}}
+theme_smr()
 }
 \value{
 A ggplot layer that applies a custom theme as described above.
 }
 \description{
 This custom theme builds off of the \code{theme_bw()}
-ggplot theme and removes plot gridlines, modifies the text size of
-various ggplot elements, places legends above the plot, and removes the
-negative white space from the y-axis.
+ggplot theme and removes plot gridlines and modifies the text size of
+various ggplot elements.
 }
