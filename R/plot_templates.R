@@ -48,3 +48,7 @@ standard_column_plot = function(data, mapping, report_year,
     stat_missing(nudge_y = nudge) +
     stat_lt_avg()
 }
+
+# THIS IS SOME REALLY INTERESTING STUFF. IT WOULD BE NICE TO LEARN MORE ABOUT THIS.
+# ANY RECOMMENDED RESOURCES?
+
