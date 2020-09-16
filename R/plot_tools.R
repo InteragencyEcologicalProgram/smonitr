@@ -75,7 +75,7 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
   interval, start_year) {
   # argument checking
   type = match.arg(type, c("all", "recent"))
-  season = match.arg(season, c("annual", "winter", "spring",
+  season = match.arg(season, c("annual", "winter", "spring", 
     "summer", "fall"))
   if (missing(start_year)) {
     start_year = switch(type,
@@ -83,8 +83,6 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
       "recent" = 2004L
     )
   }
-  # WHY IS THERE NO ELSE STATEMENT HERE LIKE THE ONE PROVIDED FOR `INTERVAL` BELOW?
-
   if (missing(interval)) {
     interval = switch(type,
       "all" = 10L,
@@ -117,10 +115,6 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
     all_breaks = all_breaks[-2]
   }
 
-# IT LOOKS LIKE YOU REMOVED THE FUNCTIONALITY TO DEFINE THE X-AXIS AS EITHER CONTINUOUS OR
-  # DISCRETE, CORRECT? YOU ACCOUNTED FOR THIS BY DEFINING THE X-AXIS AS ALWAYS CONTINUOUS AND
-  # ADDING A BUFFER OF 0.5 TO THE START AND END YEARS?
-
   # return the scale
   scale_x_continuous(title, breaks = all_breaks,
     limits = c(start_year - 0.5, report_year + 0.5))
@@ -142,16 +136,4 @@ smr_x_axis = function(report_year, type = c("all", "recent"),
 #' @export
 smr_y_axis = function(expand = expansion(mult = c(0, 0.05)), ...) {
   scale_y_continuous(..., expand = expand)
-
-  # IS IT POSSIBLE TO CHANGE THE DEFAULTS FOR EXPAND? DO WE EVEN WANT TO ALLOW THAT?
-  # WHY IS IT NECESSARY TO IMPORT UTILS HEAD, TAIL FOR THIS FUNCTION?
 }
-
-
-# I ALSO HAVE SOME GENERAL QUESTIONS ABOUT DIFFERENCES IN ROXYGEN SYNTAX.
-  # BACK TICKS INSTEAD OF \code{}
-  # SQUARE BRACKETS
-
-
-
-

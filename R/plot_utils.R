@@ -18,6 +18,3 @@ ggplot2::expansion
 round_to_mult = function(num, mult) {
   round(num / mult) * mult
 }
-
-
-# WHY IS IT NECESSARY TO IMPORT FROM ggplot2::aes AND ggplot2::expansion AND THEN EXPORT THEM?
