@@ -19,7 +19,7 @@ Helper function for parsing an Excel file hosted on a website
 or FTP server.
 }
 \note{
-This function will be defunct once \code{readxl::read_excel()}
+This function will be defunct once \code{\link[readxl:read_excel]{readxl::read_excel()}}
 \href{https://github.com/tidyverse/readxl/issues/278}{supports reading from more general inputs}.
 }
 \examples{

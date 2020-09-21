@@ -16,10 +16,10 @@ get_redbluff_data(
 \item{report_year}{The report year.}
 
 \item{start_year}{The initial year to retrieve data for.
-Default is 2004.}
+Default is \code{2004}.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using \code{readr::read_csv()}.}
+all files in fnames can be parsed using \code{\link[readr:read_csv]{readr::read_csv()}}.}
 
 \item{...}{Additional arguments to pass to \code{parse_fun}.}
 
@@ -28,11 +28,12 @@ all files in fnames can be parsed using \code{readr::read_csv()}.}
 \value{
 a list of dataframes, each element corresponds to a year
 the sequence \code{start_year:report_year}. The list also
-includes an attribute "Notes" of same length and order containing
-the notes section extracted each report file.
+includes an attribute \code{"Notes"} of same length and order
+containing the notes section extracted each report file.
 }
 \description{
-Download Redbluff data from \href{https://cbr.washington.edu}{cbr.washington.edu}.
+Download Redbluff data from
+\href{https://cbr.washington.edu}{cbr.washington.edu}.
 }
 \examples{
 \dontrun{

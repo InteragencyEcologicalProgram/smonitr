@@ -23,16 +23,14 @@ asset to search}
 Supports regex.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using \code{readr::read_csv()}.}
+all files in fnames can be parsed using \code{\link[readr:read_csv]{readr::read_csv()}}.}
 
 \item{...}{Additional arguments to pass to \code{parse_fun}.}
 
 \item{verbose}{If \code{TRUE}, display descriptive messages.}
 }
 \value{
-a named list of dataframes. The list also includes an
-attribute "Notes" of same length containing the notes section
-extracted from the report files.
+a named list of dataframes.
 }
 \description{
 Download data from \href{https://cbr.washington.edu}{Bay Delta Live}.
