@@ -5,6 +5,8 @@
 #'
 #' @inheritParams ggplot2::ggplot
 #' @inheritParams smr_x_axis
+#' @param nudge.factor Vertical nudge of missing data symbols,
+#'   as a fraction of the data range. Default is 0.015 (1.5%).
 #' @param ... other arguments to pass to [`geom_col()`]
 #'
 #' @examples
@@ -17,7 +19,7 @@
 #' @export
 standard_column_plot = function(data, mapping, report_year,
   season = c("annual", "winter", "spring", "summer", "fall"),
-  type = c("all", "recent"), ...) {
+  type = c("all", "recent"), nudge.factor = 0.015, ...) {
   # define the x-axis
   xaxis = smr_x_axis(report_year = report_year, type = type,
     season = season)
@@ -36,8 +38,10 @@ standard_column_plot = function(data, mapping, report_year,
   # convert year to integer
   data[as_name(mapping$x)] = as.integer(data[[as_name(mapping$x)]])
   # calculate nudge distance for missing data
-  nudge = max(range(data[[as_name(mapping$y)]], na.rm = TRUE,
-    finite = TRUE)) * 0.015
+#  nudge.range = data[[as_name(mapping$x)]] >= xaxis$limits[1] &
+ #   data[[as_name(mapping$x)]] <= xaxis$limits[2]
+  nudge = diff(range(data[[as_name(mapping$y)]], na.rm = TRUE,
+    finite = TRUE)) * nudge.factor
 
   # construct the plot
   ggplot(data, mapping) +

@@ -10,6 +10,7 @@ standard_column_plot(
   report_year,
   season = c("annual", "winter", "spring", "summer", "fall"),
   type = c("all", "recent"),
+  nudge.factor = 0.015,
   ...
 )
 }
@@ -33,6 +34,9 @@ minimum x-axis limit as 1966, which corresponds to the earliest
 survey shown in the fall season report (Fall Midwater Trawl).
 \code{type = "recent"} defines the minimum x-axis limit as 2004, which
 corresponds to the Pelagic Organism Decline.}
+
+\item{nudge.factor}{Vertical nudge of missing data symbols,
+as a fraction of the data range. Default is 0.015 (1.5\%).}
 
 \item{...}{other arguments to pass to \code{\link[=geom_col]{geom_col()}}}
 }

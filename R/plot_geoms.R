@@ -11,6 +11,9 @@ StatMissing <- ggproto("StatMissing", Stat,
     xlim = scales$x$limits
     if (is.null(xlim)) {
       xlim = xrange
+    } else {
+      xlim[1] = ceiling(xlim[1])
+      xlim[2] = floor(xlim[2])
     }
     # don't add missing markers to the left of the range
     newrange = max(xlim[1], xrange[1]):xlim[2]
