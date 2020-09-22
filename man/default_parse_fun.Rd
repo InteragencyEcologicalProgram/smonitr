@@ -10,7 +10,7 @@ default_parse_fun(verbose)
 \item{verbose}{If \code{TRUE}, display descriptive message.}
 }
 \value{
-Reference to function \code{\link[readr:read_csv]{readr::read_csv()}}
+Reference to function \code{\link[readr:read_delim]{readr::read_csv()}}
 }
 \description{
 Return the default file parsing function, and throw error

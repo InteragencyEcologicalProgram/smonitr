@@ -4,7 +4,9 @@
 \name{StatLTavg}
 \alias{StatLTavg}
 \title{StatLTavg ggproto}
-\format{An object of class \code{StatLTavg} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 3.}
+\format{
+An object of class \code{StatLTavg} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 3.
+}
 \usage{
 StatLTavg
 }

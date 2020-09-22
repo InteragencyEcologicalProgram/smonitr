@@ -19,7 +19,7 @@ get_redbluff_data(
 Default is \code{2004}.}
 
 \item{parse_fun}{A function to parse datasets. Default assumes that
-all files in fnames can be parsed using \code{\link[readr:read_csv]{readr::read_csv()}}.}
+all files in fnames can be parsed using \code{\link[readr:read_delim]{readr::read_csv()}}.}
 
 \item{...}{Additional arguments to pass to \code{parse_fun}.}
 

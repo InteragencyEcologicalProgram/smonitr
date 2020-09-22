@@ -10,7 +10,7 @@ smr_theme()
 A ggplot theme.
 }
 \description{
-This custom theme builds off of the \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}
+This custom theme builds off of the \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}
 theme to remove plot gridlines and modify the text size of
 various plot elements.
 }

@@ -14,13 +14,13 @@ to generate the values for the \code{expand} argument. The defaults are to
 expand the scale by 5\% on each side for continuous variables, and by
 0.6 units on each side for discrete variables.}
 
-\item{...}{Other arguments passed on to \code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}}}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}}}
 }
 \value{
 A ggplot continuous x-axis scale.
 }
 \description{
 Standardizes the y-axis a ggplot. This is really just a wrapper
-around\code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}} with a default setting
+around\code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}} with a default setting
 for the \code{expand} argument to reduce whitespace.
 }

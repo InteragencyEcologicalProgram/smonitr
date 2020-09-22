@@ -4,7 +4,9 @@
 \name{StatMissing}
 \alias{StatMissing}
 \title{StatMissing ggproto}
-\format{An object of class \code{StatMissing} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 3.}
+\format{
+An object of class \code{StatMissing} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 3.
+}
 \usage{
 StatMissing
 }
