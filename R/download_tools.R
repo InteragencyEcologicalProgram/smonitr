@@ -118,9 +118,9 @@ parse_remote_excel = function(path, ...) {
     stop("package \"readxl\" is not available.")
   }
   # added "?.*" to regex to support urls with query arguments
-  if (str_detect(path, "(xlsx)\\?.*$")) {
+  if (str_detect(path, "(xlsx)(\\?.*)*$")) {
     type = ".xlsx"
-  } else if (str_detect(path, "(xls)\\?.*$")) {
+  } else if (str_detect(path, "(xls)(\\?.*)*$")) {
     type = ".xls"
   } else {
     stop(path, " does not appear to be a valid Excel file.")
