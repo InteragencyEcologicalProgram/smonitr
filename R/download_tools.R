@@ -504,7 +504,7 @@ get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall")
     stop("Unrecognized value in argument \"seasons\"")
   }
   species = "Chinook"
-  spawn_type = "In-River"
+  if (season == "Winter") spawn_type = "All" else spawn_type = "In-River"
   spawn_location = str_replace_all("Sacramento and San Joaquin River Systems",
     " ", "+")
   # download data
