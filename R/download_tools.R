@@ -492,6 +492,7 @@ get_ftp_data = function(ftp_address, dir_path, fnames, parse_fun, ..., verbose =
 #' @importFrom glue glue
 #' @importFrom stringr str_replace_all str_replace str_detect
 #' @importFrom purrr map map2 map_lgl
+
 #' @export
 get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall"), parse_fun, ..., verbose = TRUE) {
   if (missing(parse_fun)) {
@@ -504,7 +505,12 @@ get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall")
     stop("Unrecognized value in argument \"seasons\"")
   }
   species = "Chinook"
-  if (season == "Winter") spawn_type = "All" else spawn_type = "In-River"
+  # For some reason winter-run chinook need spawn_type = "All"
+  if (season == "Winter") {
+    spawn_type = "All"
+  } else {
+    spawn_type = "In-River"
+  }
   spawn_location = str_replace_all("Sacramento and San Joaquin River Systems",
     " ", "+")
   # download data
@@ -516,7 +522,7 @@ get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall")
   grandtab.raw = map(urls, parse_fun, ...)
   names(grandtab.raw) = season
   # check for download error
-  err = map_lgl(grandtab.raw, ~!all(names(.x) %in% c("Year", "Annual")))
+  err = map_lgl(grandtab.raw, ~ !all(names(.x) %in% c("Year", "Annual")))
   if (any(err)) {
     stop("Error retrieving data for season: ",
       paste(shQuote(season[err]), collapse = ", "), ".",
@@ -528,12 +534,11 @@ get_grandtab_data = function(season = c("Winter", "Spring", "Fall", "Late-Fall")
   grandtab = map2(grandtab.raw, notes.index,
     ~ head(.x, .y - 1))
   # deal with "*" in Year column
-  grandtab = map(grandtab,
-    ~ mutate(.x,
-       flag = ifelse(str_detect(.data$Year, "\\*"), "*", ""),
-       Year = as.integer((str_replace(.data$Year, "\\*", ""))
-      ))
-    )
+  grandtab = map(grandtab, ~ {
+      .x["flag"] = ifelse(str_detect(.x$Year, "\\*"), "*", "")
+      .x["Year"] = as.integer((str_replace(.x$Year, "\\*", "")))
+      .x
+    })
   # attach notes as attribute of list
   grandtab.notes = map2(grandtab.raw, notes.index,
     ~ str_c(tail(.x[["Year"]],  -.y), collapse = "\n"))
