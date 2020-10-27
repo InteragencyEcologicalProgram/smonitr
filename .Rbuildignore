@@ -4,3 +4,4 @@
 ^smonitr\.rxproj$
 ^smonitr\.sln$
 .vs
+^\.github$
